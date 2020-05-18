@@ -52,7 +52,7 @@ void purgeFeatures(double *state, const std::vector<float>& state_vec,
   // and Distance from Teammate i to Opponent are absent
   int tmpIndex = oppPres ? (9 + 3 * numTMates) : (9 + 2 * numTMates);
 
-  for(int i = 0; i < state_vec.size(); i++) {
+  for(int i = 0; i < state_vec.size()-2; i++) {
 
     // Ignore first six featues
     if(i == 5 || i==8) continue;
@@ -167,7 +167,7 @@ void offenseAgent(int port, int numTMates, int numOpponents, int numEpi, double 
       // Get hfo::Action
       a = toAction(action, state_vec);
       if (a== hfo::MARK_PLAYER) {
-           unum = state_vec[(state_vec.size()-1 - (action-5)*3)];
+           unum = state_vec[(state_vec.size()-1 -2- (action-5)*3)];
            hfo.act(a,unum);
         } else {
            hfo.act(a);
